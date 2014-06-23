@@ -17,14 +17,14 @@ class RockPaperScissors
   end
 
   def self.tournament_winner tournament
-    if tournament[0][0].is_a? String
-        return self.winner(tournament[0], tournament[1])
+    if tournament[0][0].kind_of?(String)
+      return winner(tournament[0], tournament[1])
+    else
+      return winner(tournament_winner(tournament[0]), tournament_winner(tournament[1]))
     end
-    # Otherwise keep going down the rabbit hole
-    return winner([self.winner(tournament[0][0], tournament[0][1]),self.winner(tournament[1][0],tournament[1][1])])
   end
 
   def self.is_valid? choice
-    !!(choice =~  /^[rps]{1}$/)
+    !!(choice =~ /^[rps]{1}$/)
   end
 end
